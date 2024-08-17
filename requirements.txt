@@ -1,4 +1,4 @@
-streamlit==1.25.0
+
 distutils
 langchain==0.0.304
 newspaper3k==0.2.8
