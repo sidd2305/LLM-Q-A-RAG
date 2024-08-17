@@ -1,12 +1,12 @@
 # LLM Q&A RAG
 
-**This Repository** is a powerful application designed for advanced question-answering using Retrieval-Augmented Generation (RAG) techniques. It integrates with OpenAI's language models to provide contextually relevant answers from various sources, including URLs and uploaded files.
+**This Repository** is a powerful application designed for advanced question-answering using Retrieval-Augmented Generation (RAG) techniques. It integrates with Mistral's language models to provide contextually relevant answers from various sources, including URLs and uploaded files.
 
 ## Features
 
 - **URL Processing**: Enter URLs of news articles or other sources to build a knowledge base.
 - **File Upload**: Upload files in CSV, TXT, or PDF formats to use as a reference for generating answers.
-- **Customizable Model**: Utilizes OpenAI's language models with options to switch between different configurations.
+- **Customizable Model**: Utilizes Mistral's language models with options to switch between different configurations.
 - **Dynamic Q&A**: Interact with the application by querying the knowledge base to get accurate and relevant answers.
 
 ## Installation
@@ -28,9 +28,9 @@ To get started with the RAG Tool, follow these steps:
     ```
 
 3. **Create Environment File**:
-    Create a `.env` file in the root directory and add your OpenAI API key:
+    Create a `.env` file in the root directory and add your Mistral API key:
     ```
-    OPENAI_API_KEY=your_openai_api_key
+    Mistral_API_KEY=your_Mistral_api_key
     ```
 
 4. **Run the Application**:
@@ -58,7 +58,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgements
 
-- OpenAI for providing the language models.
+- Mistral for providing the language models.
 - Streamlit for the interactive app framework.
 - LangChain for facilitating text processing and embeddings.
 
