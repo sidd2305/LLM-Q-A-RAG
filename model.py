@@ -1,9 +1,12 @@
 import os
 import pickle
 import time
+from langchain.llms import HuggingFaceEndpoint
 import pandas as pd
+from langchain_community.embeddings import FakeEmbeddings
 from io import StringIO
 import streamlit as st
+from langchain.embeddings import HuggingFaceEmbeddings
 from langchain import OpenAI
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -15,6 +18,8 @@ from langchain.llms import OpenLLM
 from dotenv import load_dotenv
 from langchain.chat_models import ChatOpenAI
 from pypdf import PdfReader  # Use pypdf for handling PDF files
+
+
 
 load_dotenv()  # Load environment variables from .env
 
@@ -32,7 +37,14 @@ if app_mode == "Process URLs":
     file_path = "faiss_store_openai.pkl"
 
     main_placeholder = st.empty()
-    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.9, max_tokens=500)
+    llm = HuggingFaceEndpoint(
+    endpoint_url="https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+    task="text-generation",
+    huggingfacehub_api_token="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",
+    max_new_tokens=7000
+)
+
+    # llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.9, max_tokens=500)
     # llm = OpenLLM(model="wizardlm-13B", temperature=0.9, max_tokens=500)
 
     if process_url_clicked:
@@ -52,12 +64,14 @@ if app_mode == "Process URLs":
         if data:
             text_splitter = RecursiveCharacterTextSplitter(
                 separators=['\n\n', '\n', '.', ','],
-                chunk_size=1000
+                chunk_size=2500
             )
             main_placeholder.text("Text Splitter...Started...✅✅✅")
             docs = text_splitter.split_documents(data)
 
-            embeddings = OpenAIEmbeddings()
+            # Replace OpenAIEmbeddings with HuggingFaceEmbeddings
+            embeddings = FakeEmbeddings(size = 500) 
+
             vectorstore_openai = FAISS.from_documents(docs, embeddings)
             main_placeholder.text("Embedding Vector Started Building...✅✅✅")
             time.sleep(2)
@@ -90,7 +104,14 @@ elif app_mode == "Upload File":
 
     if uploaded_file:
         file_path = "faiss_store_openai.pkl"
-        llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.9, max_tokens=500)
+        llm = HuggingFaceEndpoint(
+    endpoint_url="https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+    task="text-generation",
+    huggingfacehub_api_token="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",
+    max_new_tokens=8000
+)
+
+        # llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.9, max_tokens=500)
         # llm = OpenLLM(model="wizardlm-13B", temperature=0.9, max_tokens=500)
         main_placeholder = st.empty()
         if uploaded_file.type == "text/csv":
@@ -114,7 +135,9 @@ elif app_mode == "Upload File":
             main_placeholder.text("Text Splitter...Started...✅✅✅")
             docs = text_splitter.split_documents(data)
 
-            embeddings = OpenAIEmbeddings()
+            # Replace OpenAIEmbeddings with HuggingFaceEmbeddings
+            embeddings = FakeEmbeddings(size = 500) 
+
             vectorstore_openai = FAISS.from_documents(docs, embeddings)
             main_placeholder.text("Embedding Vector Started Building...✅✅✅")
             time.sleep(2)
