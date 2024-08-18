@@ -11,3 +11,4 @@ pypdf==3.10.0
 openai==0.28.0
 huggingface-hub==0.18.0
 langchain-community
+lxml_html_clean
