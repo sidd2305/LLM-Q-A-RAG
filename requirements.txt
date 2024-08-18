@@ -13,3 +13,4 @@ huggingface-hub==0.18.0
 langchain-community
 lxml_html_clean
 pydantic
+transformers
