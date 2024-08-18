@@ -41,7 +41,7 @@ if app_mode == "Process URLs":
     endpoint_url="https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
     task="text-generation",
     huggingfacehub_api_token="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",
-    max_new_tokens=7000
+    
 )
 
     # llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.9, max_tokens=500)
@@ -108,7 +108,7 @@ elif app_mode == "Upload File":
     endpoint_url="https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
     task="text-generation",
     huggingfacehub_api_token="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",
-    max_new_tokens=8000
+ 
 )
 
         # llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.9, max_tokens=500)
