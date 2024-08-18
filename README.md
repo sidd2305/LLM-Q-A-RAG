@@ -57,7 +57,8 @@ To get started with the RAG Tool, follow these steps:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Website Demo
-[https://llmragsidd.streamlit.app/](Click Here)
+https://llmragsidd.streamlit.app/
+
 ## Acknowledgements
 
 - Mistral for providing the language models.
